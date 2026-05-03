@@ -1,32 +1,45 @@
 import { motion } from 'framer-motion'
+import { Heart } from 'lucide-react'
 
-export default function HeartsDisplay({ lives, maxLives }) {
+const MAX_LIVES = 6
+
+export default function HeartsDisplay({ wrongGuesses }) {
+  const livesLeft = MAX_LIVES - wrongGuesses
+
   return (
-    <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
-      {Array.from({ length: maxLives }).map((_, index) => {
-        const isAlive = index < lives
-
-        return (
-          <motion.span
-            key={index}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: index * 0.1 }}
+    <div style={{
+      display: 'flex',
+      gap: '8px',
+      justifyContent: 'center',
+      marginTop: '10px'
+    }}>
+      {Array.from({ length: MAX_LIVES }).map((_, i) => (
+        <motion.div
+          key={i}
+          animate={
+            i < livesLeft
+              ? { scale: [1, 1.2, 1], opacity: 1 }
+              : { scale: 0.8, opacity: 0.3 }
+          }
+          transition={
+            i < livesLeft
+              ? { duration: 1.2, repeat: Infinity, delay: i * 0.1 }
+              : { duration: 0.3 }
+          }
+        >
+          <Heart
             style={{
-              fontSize: '30px',
+              width: '26px',
+              height: '26px',
+              color: i < livesLeft ? '#fb71cd' : '#4c0536',
+              fill: i < livesLeft ? '#fb71cd' : 'transparent',
+              filter: i < livesLeft
+                ? 'drop-shadow(0 0 6px rgba(244,114,182,0.7))'
+                : 'none'
             }}
-          >
-            <span
-              style={{
-                color: isAlive ? '#ff4d6d' : '#444',
-                textShadow: isAlive ? '0 0 10px #ff4d6d' : 'none',
-              }}
-            >
-              ♥
-            </span>
-          </motion.span>
-        )
-      })}
+          />
+        </motion.div>
+      ))}
     </div>
   )
 }

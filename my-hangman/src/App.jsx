@@ -1,19 +1,20 @@
 import { useState } from 'react'
 import Character from './components/Character'
-
-const WORDS = [
-  "JAVASCRIPT", "REACT", "FUNCTION", "VARIABLE",
-  "COMPONENT", "DEVELOPER", "ALGORITHM", "OBJECT",
-  "ARRAY", "ASYNC", "PROMISE", "DEBUG"
-]
+import Keyboard from './components/Keyboard'
+import Word from './components/Word'
+import { WORDS } from './data/words'
+import HeartsDisplay from './components/HeartsDisplay'
 
 function getRandom() {
   return WORDS[Math.floor(Math.random() * WORDS.length)]
 }
 
 export default function App() {
-  const [word, setWord] = useState(getRandom)
+  const [current, setCurrent] = useState(getRandom)
   const [guessed, setGuessed] = useState([])
+
+  const word = current.word
+  const theme = current.theme
 
   const wrong = guessed.filter(l => !word.includes(l)).length
   const isWin = word.split('').every(l => guessed.includes(l))
@@ -26,53 +27,59 @@ export default function App() {
   }
 
   const newGame = () => {
-    setWord(getRandom())
+    setCurrent(getRandom())
     setGuessed([])
   }
 
-
   return (
   <div style={{ textAlign: 'center', padding: '40px' }}>
-   <h1 style={{ fontWeight: 300 }}>PICKME HANGMAN</h1>
+
+    <h1 style={{ fontWeight: 300 }}>PICKME HANGMAN</h1>
+
+    <div className="theme">
+      Theme: {theme}
+    </div>
+
     <Character wrong={wrong} />
 
-     <p style={{ marginBottom: '10px' }}>Errors: {wrong} / 6</p>
+    <div style={{
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: '10px'
+}}>
+  <Word word={word} guessed={guessed} />
+  <HeartsDisplay wrongGuesses={wrong} />
+  <Keyboard
+    guessed={guessed}
+    word={word}
+    onGuess={guess}
+  />
+</div>
 
-      <div className="word">
-        {word.split('').map((l, i) => (
-          <span key={i}>{guessed.includes(l) ? l : '_'}</span>
-        ))}
-      </div>
+    {isWin && <div className="status">♥ YOU WIN! ♥</div>}
+    {isLose && <div className="status">Game over! The word was: {word}</div>}
 
-      <div className="keyboard">
-        {'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(l => (
-          <button key={l} onClick={() => guess(l)} disabled={guessed.includes(l)}>
-            {l}
-          </button>
-        ))}
-      </div>
+    {/* 🔁 НОВА ГРА */}
+    {(isWin || isLose) && (
+      <button
+        onClick={newGame}
+        style={{
+          marginTop: '10px',
+          padding: '12px 30px',
+          background: '#ff69b4',
+          border: 'none',
+          borderRadius: '8px',
+          color: 'white',
+          fontFamily: 'Silkscreen, monospace',
+          fontSize: '1rem',
+          cursor: 'pointer'
+        }}
+      >
+        NEW GAME
+      </button>
+    )}
 
-      {isWin && <div className="status">♥ YOU WIN! ♥</div>}
-      {isLose && <div className="status">Game over! The word was: {word}</div>}
-
-      {(isWin || isLose) && (
-        <button
-          onClick={newGame}
-          style={{
-            marginTop: '20px',
-            padding: '12px 30px',
-            background: '#ff69b4',
-            border: 'none',
-            borderRadius: '8px',
-            color: 'white',
-            fontFamily: 'Silkscreen, monospace',
-            fontSize: '1rem',
-            cursor: 'pointer'
-          }}
-        >
-          NEW GAME
-        </button>
-      )}
-    </div>
-  )
+  </div>
+)
 }
