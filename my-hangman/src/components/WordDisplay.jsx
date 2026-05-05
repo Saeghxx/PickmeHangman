@@ -1,23 +1,4 @@
-import { useState, useEffect } from 'react'
-
 export default function WordDisplay({ word, guessed, revealed }) {
-  const [shown, setShown] = useState({})
-
-  //скидання при новому слові
-  useEffect(() => {
-    setShown({})
-  }, [word])
-
-  //анімація відкриття букв
-  useEffect(() => {
-    word.split('').forEach((l, i) => {
-      if (guessed.includes(l) || revealed) {
-        setTimeout(() => {
-          setShown(prev => ({ ...prev, [i]: true }))
-        }, i * 60)
-      }
-    })
-  }, [guessed, revealed, word])
 
   return (
     <div style={{
@@ -27,51 +8,31 @@ export default function WordDisplay({ word, guessed, revealed }) {
       flexWrap: 'wrap',
       margin: '24px 0'
     }}>
+
       {word.split('').map((l, i) => {
-        const visible = shown[i]
-        const isWrong = revealed && !guessed.includes(l)
+        const visible = guessed.includes(l) || revealed
+        const wrong = revealed && !guessed.includes(l)
 
         return (
-          <div key={i} style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            width: '32px'
-          }}>
-            
+          <div key={i} style={{ width: '32px', textAlign: 'center' }}>
+
             <div style={{
-              height: '40px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
+              fontSize: '1.8rem',
+              fontFamily: 'Silkscreen, monospace',
+              color: wrong ? '#ff4444' : '#ffe0ec',
+              opacity: visible ? 1 : 0,
+              transform: visible ? 'translateY(0)' : 'translateY(-8px)',
+              transition: '0.2s ease'
             }}>
-              <span style={{
-                fontSize: '1.8rem',
-                fontFamily: 'Silkscreen, monospace',
-                color: isWrong ? '#ff4444' : '#ffe0ec',
-                textShadow: isWrong
-                  ? '0 0 10px #ff4444'
-                  : '0 0 10px rgba(255,105,180,0.7)',
-                opacity: visible ? 1 : 0,
-                transform: visible
-                  ? 'translateY(0)'
-                  : 'translateY(-12px)',
-                transition: 'all 0.25s ease'
-              }}>
-                {l}
-              </span>
+              {l}
             </div>
 
             <div style={{
-              width: '32px',
               height: '3px',
-              borderRadius: '2px',
               background: visible ? '#ff69b4' : '#5a2a5a',
-              boxShadow: visible
-                ? '0 0 8px rgba(255,105,180,0.6)'
-                : 'none',
-              transition: 'all 0.25s ease'
+              transition: '0.2s ease'
             }} />
+
           </div>
         )
       })}
