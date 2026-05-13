@@ -3,10 +3,10 @@ export default function WordDisplay({ word, guessed, revealed }) {
   return (
     <div style={{
       display: 'flex',
-      gap: '16px',
+      gap: '10px',
       justifyContent: 'center',
       flexWrap: 'wrap',
-      margin: '24px 0'
+      margin: '12px 0'
     }}>
 
       {word.split('').map((l, i) => {
@@ -17,7 +17,7 @@ export default function WordDisplay({ word, guessed, revealed }) {
           <div key={i} style={{ width: '32px', textAlign: 'center' }}>
 
             <div style={{
-              fontSize: '1.8rem',
+              fontSize: '1.4rem',
               fontFamily: 'Silkscreen, monospace',
               color: wrong ? '#ff4444' : '#ffe0ec',
               opacity: visible ? 1 : 0,

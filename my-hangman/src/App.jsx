@@ -10,24 +10,22 @@ export default function App() {
   const [loading, setLoading] = useState(true)
 
   const fetchWord = async () => {
-    try {
-      setLoading(true)
-      setGuessed([])
-      const res = await fetch("http://localhost:3001/words/random")
-      const data = await res.json()
-      setCurrent(data)
-    } catch (err) {
-      console.log("Error:", err)
-    } finally {
-      setLoading(false)
-    }
+  setGuessed([])
+  setCurrent(null)
+  try {
+    const res = await fetch("http://localhost:3001/words/random")
+    const data = await res.json()
+    setCurrent(data)
+  } catch (err) {
+    console.log("Error:", err)
   }
+}
 
   useEffect(() => {
     fetchWord()
   }, [])
 
-  if (loading || !current?.word) {
+  if (!current?.word) {
     return <div style={{ textAlign: 'center' }}>Loading...</div>
   }
 
@@ -57,19 +55,23 @@ export default function App() {
       {isLose && <div>Game over! The word was: {word}</div>}
       {(isWin || isLose) && (
         <button
-          onClick={fetchWord}
-          style={{
-            marginTop: '15px',
-            padding: '10px 20px',
-            background: '#ff69b4',
-            border: 'none',
-            borderRadius: '8px',
-            color: 'white',
-            cursor: 'pointer'
-          }}
-        >
-          NEW GAME
-        </button>
+  onClick={fetchWord}
+  style={{
+    marginTop: '12px',
+    padding: '10px 28px',
+    background: '#3d1a3d',
+    border: '2px solid #ff69b4',
+    borderRadius: '6px',
+    color: '#ffb6c1',
+    cursor: 'pointer',
+    fontSize: '0.8rem',
+    fontFamily: 'Silkscreen, monospace',
+    letterSpacing: '1px',
+    boxShadow: '0 0 14px rgba(255,105,180,0.5)',
+  }}
+>
+  ✦ NEW GAME ✦
+</button>
       )}
     </div>
   )

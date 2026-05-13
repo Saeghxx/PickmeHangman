@@ -25,13 +25,13 @@ export default function Character({ wrong }) {
     <div style={{
       border: '3px solid #ff69b4',
       borderRadius: '16px',
-      padding: '10px',
+      padding: '6px',
       display: 'inline-block',
       boxShadow: '0 0 20px rgba(255,105,180,0.4)',
-      margin: '20px auto',
+      margin: '8px auto',
       background: 'rgba(255,105,180,0.05)'
     }}>
-      <svg width="200" height="220">
+      <svg width="160" height="176">
         {/* Шибениця */}
         <rect x="20" y="210" width="160" height="8" fill="#ff69b4" rx="2"/>
         <rect x="50" y="20" width="8" height="190" fill="#ff69b4" rx="2"/>

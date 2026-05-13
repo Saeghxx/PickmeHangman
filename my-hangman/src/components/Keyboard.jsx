@@ -9,7 +9,7 @@ export default function Keyboard({ guessed, word, onGuess, disabled }) {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',
-        gap: '8px',
+        gap: '6px',
         maxWidth: '500px',
         margin: '0 auto'
       }}
@@ -40,13 +40,13 @@ export default function Keyboard({ guessed, word, onGuess, disabled }) {
             onClick={() => !isUsed && !disabled && onGuess(l)}
             disabled={isUsed || disabled}
             style={{
-              width: '42px',
-              height: '42px',
+              width: '40px',
+              height: '40px',
               background: isCorrect ? '#ff69b4' : '#3d1a3d',
               border: `2px solid ${isCorrect ? '#ff1493' : '#ff69b4'}`,
               color: isCorrect ? 'white' : '#ffb6c1',
               fontFamily: 'Silkscreen, monospace',
-              fontSize: '0.8rem',
+              fontSize: '0.7rem',
               cursor: isUsed ? 'not-allowed' : 'pointer',
               borderRadius: '6px',
               boxShadow: isCorrect
