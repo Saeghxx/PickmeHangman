@@ -29,7 +29,7 @@ export default function HeartsDisplay({ wrongGuesses }) {
         >
           <Heart
             style={{
-              width: '30px',
+              width: '25px',
               height: '30px',
               color: i < livesLeft ? '#fb71cd' : '#4c0536',
               fill: i < livesLeft ? '#fb71cd' : 'transparent',
