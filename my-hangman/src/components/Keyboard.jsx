@@ -63,7 +63,7 @@ export default function Keyboard({ guessed, word, onGuess, disabled }) {
               border: `2px solid ${isCorrect ? '#ff1493' : '#ff69b4'}`,
               color: isCorrect ? 'white' : '#ffb6c1',
               fontFamily: 'Silkscreen, monospace',
-              fontSize: '0.7rem',
+              fontSize: '1rem',
               cursor: isUsed ? 'not-allowed' : 'pointer',
               borderRadius: '6px',
               boxShadow: isCorrect ? '0 0 14px rgba(255,105,180,0.7)' : 'none',

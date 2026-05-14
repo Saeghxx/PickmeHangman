@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
-const PIXEL_SIZE = 8
+const PIXEL_SIZE = 10
 
 const PALETTE = {
   b: '#ffb6c1',
@@ -323,10 +323,11 @@ export default function GhostPet({
   const config = MOOD_CONFIG[mood]
 
   return (
+    
     <div
       style={{
         position: 'fixed',
-        left: '24px',
+        right: '60px',
         top: '50%',
         transform: 'translateY(-50%)',
         display: 'flex',
@@ -384,24 +385,18 @@ export default function GhostPet({
       </div>
 
       <motion.div
-        key={triggerKey}
         animate={config.bodyAnim}
-        transition={config.bodyTransition}
-        whileHover={{
-          scale: 1.08,
-          rotate: -2,
-        }}
-        onClick={() => {
-          setMood('happy')
-          setShowBubble(true)
-
-          setTimeout(() => {
-            setMood('idle')
-            setShowBubble(false)
-          }, 800)
+        transition={{
+          ...config.bodyTransition,
+          type: 'tween',
+          ease: 'linear',
         }}
         style={{
           cursor: 'pointer',
+          imageRendering: 'pixelated',
+          transform: 'translate3d(0,0,0)',
+          willChange: 'transform',
+          backfaceVisibility: 'hidden',
         }}
       >
         <PixelCat mood={mood} />
