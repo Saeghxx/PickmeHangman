@@ -7,7 +7,11 @@
 }
 
 body {
-  background: radial-gradient(circle at center, #2a0f2a 0%, #1a0f2e 35%, #0b0612 70%, #05030a 100%);
+  background: 
+    radial-gradient(circle at center, #2a0f2a 0%, #1a0f2e 35%, #0b0612 70%, #05030a 100%),
+    linear-gradient(rgba(255, 105, 180, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 105, 180, 0.06) 1px, transparent 1px);
+  background-size: auto, 24px 24px, 24px 24px;
   color: #ffb6c1;
   font-family: 'Silkscreen', monospace;
   min-height: 100vh;
@@ -81,10 +85,11 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image: radial-gradient(circle, rgba(255,105,180,0.7) 1px, transparent 2px);
-  background-size: 120px 120px;
-  animation: move1 18s linear infinite;
-  opacity: 0.3;
+  background-image: 
+    linear-gradient(rgba(255, 105, 180, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 105, 180, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  z-index: 0;
 }
 
 @keyframes move1 {

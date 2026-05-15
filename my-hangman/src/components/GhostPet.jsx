@@ -119,8 +119,10 @@ function PixelCat({ mood }) {
     <div
       style={{
         position: 'relative',
-        imageRendering: 'pixelated',
         display: 'inline-block',
+        transform: 'translateZ(0)',
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden',
       }}
     >
       {bodyPixels.map((row, y) =>

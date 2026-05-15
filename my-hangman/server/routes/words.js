@@ -8,7 +8,9 @@ router.get("/", async (req, res) => {
 })
 
 router.get("/random", async (req, res) => {
-  const words = await Word.find()
+  const { difficulty } = req.query
+  const filter = difficulty ? { difficulty } : {}
+  const words = await Word.find(filter)
   const random = words[Math.floor(Math.random() * words.length)]
   res.json(random)
 })
