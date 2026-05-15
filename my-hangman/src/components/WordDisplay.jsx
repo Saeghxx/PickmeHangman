@@ -6,7 +6,7 @@ export default function WordDisplay({ word, guessed, revealed }) {
         gap: '10px',
         justifyContent: 'center',
         flexWrap: 'wrap',
-        margin: '12px 0'
+        margin: '20px 0'
       }}
     >
       {word.split('').map((l, i) => {

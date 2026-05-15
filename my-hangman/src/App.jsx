@@ -58,10 +58,6 @@ export default function App() {
     audio.loop = true
     audio.volume = 0.4
     audioRef.current = audio
-    const playPromise = audio.play()
-    if (playPromise !== undefined) {
-      playPromise.then(() => setPlaying(true)).catch(() => {})
-    }
   }, [])
 
   useEffect(() => {
@@ -86,11 +82,11 @@ export default function App() {
     if (isLose) playLose()
   }, [isWin, isLose])
 
- const handleDifficultyChange = (d) => {
-  setDifficulty(d)
-  difficultyRef.current = d
-  fetchWord()  
-}
+  const handleDifficultyChange = (d) => {
+    setDifficulty(d)
+    difficultyRef.current = d
+    fetchWord()
+  }
 
   const fetchWord = async () => {
     setGameKey(k => k + 1)

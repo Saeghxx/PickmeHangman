@@ -31,7 +31,7 @@ export default function Character({ wrong }) {
       margin: '8px auto',
       background: 'rgba(255,105,180,0.05)'
     }}>
-      <svg width="160" height="176">
+      <svg width="170" height="186">
         {/* Шибениця */}
         <rect x="20" y="210" width="160" height="8" fill="#ff69b4" rx="2"/>
         <rect x="50" y="20" width="8" height="190" fill="#ff69b4" rx="2"/>
