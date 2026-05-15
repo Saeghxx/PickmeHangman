@@ -181,9 +181,14 @@ Contributions are welcome! Feel free to:
 
 This project is open source and available under the MIT License.
 
-## 👤 Author
+## Author
 
-**Saeghxx** - [GitHub Profile](https://github.com/Saeghxx)
+Alina Retiznik
+
+Igor Sikorsky Kyiv Polytechnic Institute
+Faculty of Informatics and Computer Engineering
+Group: IM-54
+GitHub: @Saeghxx
 
 ## 🙏 Acknowledgments
 
